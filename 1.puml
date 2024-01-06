@@ -1,0 +1,87 @@
+@startuml
+class edu.ynu.se.xiecheng.achitectureclass.entity.Business {
+- String businessName
+- String ownerName
+- String email
+- String contactNumber
+- String address
+- String description
+- Set<Shop> shops
+}
+class edu.ynu.se.xiecheng.achitectureclass.entity.Category {
+- String CategoryName
+- Set<Shop> shops
+}
+abstract class edu.ynu.se.xiecheng.achitectureclass.entity.User {
+# String username
+# String password
+- String image
+# Integer type
++ void setPassword(String)
+}
+class edu.ynu.se.xiecheng.achitectureclass.entity.LineItem {
+- Integer quantity
+- Double price
+- Double totalPrice
+- Order order
+- ShopItem shopItem
+}
+enum edu.ynu.se.xiecheng.achitectureclass.entity.OrderStatus {
++  UNPAID
++  PAID
++  CONFIRMED
++  SHIPPED
++  DELIVERED
++  CANCELLED
++  REFUNDED
+}
+class edu.ynu.se.xiecheng.achitectureclass.entity.ShopItem {
+- Shop shop
+- Item item
+- int stock
+- boolean isAvailable
+}
+class edu.ynu.se.xiecheng.achitectureclass.entity.Shop {
+- String shopName
+- String location
+- String description
+- Business business
+- Set<ShopItem> shopItems
+- Category category
+}
+class edu.ynu.se.xiecheng.achitectureclass.entity.Customer {
+- String customerName
+- String phone
+- String email
+- String address
+- List<Order> orders
+}
+class edu.ynu.se.xiecheng.achitectureclass.entity.Order {
+- Double totalPrice
+- Date paymentDate
+- String customerNotes
+- Customer customer
+- Shop shop
+- List<LineItem> lineItems
+- String orderStatus
+}
+class edu.ynu.se.xiecheng.achitectureclass.entity.Item {
+- String name
+- String description
+- double price
+- String image
+- Set<ShopItem> shopItems
+- Business business
+}
+
+
+edu.ynu.se.xiecheng.achitectureclass.entity.User <|-- edu.ynu.se.xiecheng.achitectureclass.entity.Business
+edu.ynu.se.xiecheng.achitectureclass.common.entity.LogicEntity <|-- edu.ynu.se.xiecheng.achitectureclass.entity.Category
+edu.ynu.se.xiecheng.achitectureclass.common.entity.LogicEntity <|-- edu.ynu.se.xiecheng.achitectureclass.entity.User
+edu.ynu.se.xiecheng.achitectureclass.common.entity.LogicEntity <|-- edu.ynu.se.xiecheng.achitectureclass.entity.LineItem
+edu.ynu.se.xiecheng.achitectureclass.common.entity.LogicEntity <|-- edu.ynu.se.xiecheng.achitectureclass.entity.ShopItem
+edu.ynu.se.xiecheng.achitectureclass.common.entity.LogicEntity <|-- edu.ynu.se.xiecheng.achitectureclass.entity.Shop
+edu.ynu.se.xiecheng.achitectureclass.entity.User <|-- edu.ynu.se.xiecheng.achitectureclass.entity.Customer
+edu.ynu.se.xiecheng.achitectureclass.common.entity.LogicEntity <|-- edu.ynu.se.xiecheng.achitectureclass.entity.Order
+edu.ynu.se.xiecheng.achitectureclass.common.entity.LogicEntity <|-- edu.ynu.se.xiecheng.achitectureclass.entity.Item
+@enduml
