@@ -24,8 +24,8 @@ class AchitectureClassApplicationTests {
 
         Shop shop = new Shop();
         shop.setId(2L);
-        List<ShopItem> shopItem = shopItemDao.findByShop(shop);
-        System.out.println(shopItem);
+//        List<ShopItem> shopItem = shopItemDao.findByShop(shop);
+//        System.out.println(shopItem);
     }
     @Test
     void testOrder(){

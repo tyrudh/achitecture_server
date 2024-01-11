@@ -1,16 +1,14 @@
 package edu.ynu.se.xiecheng.achitectureclass.entity;
-
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import edu.ynu.se.xiecheng.achitectureclass.common.entity.LogicEntity;
 import lombok.Getter;
 import lombok.Setter;
+import org.aspectj.weaver.ast.Or;
 import org.hibernate.annotations.Where;
 
 import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
-
-
 @Entity
 @Getter
 @Setter
@@ -23,11 +21,12 @@ public class Order extends LogicEntity {
     private Date paymentDate;
     @Column
     private String customerNotes;
+    @Column
+    private Integer cancelOrder;
     @ManyToOne
     @JoinColumn(name = "customer_id")
     @JsonIgnoreProperties({"customer", "shop"})
     private Customer customer;
-
     @ManyToOne
     @JoinColumn(name = "shop_id")
     @JsonIgnoreProperties({"customer", "shop"})
@@ -39,9 +38,7 @@ public class Order extends LogicEntity {
             cascade = CascadeType.ALL)
     @JsonIgnoreProperties("order")
     private List<LineItem> lineItems;
-
     private String orderStatus;
-
     public List<LineItem> getLineItems() {
         return lineItems;
     }

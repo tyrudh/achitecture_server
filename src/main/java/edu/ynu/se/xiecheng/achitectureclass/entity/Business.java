@@ -1,7 +1,5 @@
 package edu.ynu.se.xiecheng.achitectureclass.entity;
-
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import edu.ynu.se.xiecheng.achitectureclass.common.entity.LogicEntity;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.Where;
@@ -13,7 +11,6 @@ import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
-
 @Entity
 @Getter
 @Setter
@@ -39,4 +36,18 @@ public class Business extends User {
             cascade = CascadeType.ALL)
     @JsonIgnoreProperties(value = {"business"})
     private Set<Shop> shops;
+    /**
+     * 获取商家的店铺
+     */
+    private List<Shop> getBusinessShop(){
+        List<Shop> shopList = new ArrayList<>(this.shops);
+        return shopList;
+    }
+    /**
+     * 新增商人的店铺
+     * @param shop
+     */
+    private void setShop(Shop shop){
+        this.shops.add(shop);
+    }
 }

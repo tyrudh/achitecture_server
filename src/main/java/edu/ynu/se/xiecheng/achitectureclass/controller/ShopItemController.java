@@ -8,6 +8,7 @@ import edu.ynu.se.xiecheng.achitectureclass.entity.ShopItem;
 import edu.ynu.se.xiecheng.achitectureclass.service.ShopItemService;
 import edu.ynu.se.xiecheng.achitectureclass.service.ShopService;
 import io.swagger.annotations.Api;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -15,12 +16,9 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/shopItem")
 public class ShopItemController  extends LogicController<ShopItemService, ShopItemDao, ShopItem,Long> {
-    public ShopItemController(ShopItemService ls) {
+    public ShopItemController(@Autowired ShopItemService ls) {
         super(ls);
     }
 
-    /**
-     * 商家在店铺上架商品：上架shopItem
-     */
 
 }
